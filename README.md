@@ -1,1 +1,1 @@
-# gynae-booking-ui
+# dentist-booking-ui
