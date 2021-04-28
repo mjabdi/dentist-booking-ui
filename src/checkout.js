@@ -85,11 +85,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(0),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(1),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(2),
+      marginTop: theme.spacing(0),
       marginBottom: theme.spacing(2),
       padding: theme.spacing(3),
     },
@@ -151,6 +151,11 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+
+  mainTitle:{
+    color: theme.palette.primary.main,
+    fontSize:"1.5rem",
+  }
 
 }));
 
@@ -353,7 +358,7 @@ const setActiveStep = (step) =>
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="absolute" color="default" className={classes.appBar}>
+      {/* <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Grid
             container
@@ -382,13 +387,13 @@ const setActiveStep = (step) =>
             </Grid>
           </Grid>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <main className={classes.layout}>
         <Paper className={classes.paper}>
 
 
           {activeStep <= 4 && (
-            <Typography component="h1" variant="h6" align="center">
+            <Typography className={classes.mainTitle} component="h1" variant="h6" align="center">
               Book Appointment Online
             </Typography>
           )}
@@ -476,7 +481,7 @@ const setActiveStep = (step) =>
           </React.Fragment>
         </Paper>
 
-        <Button
+        {/* <Button
           variant="contained"
           className={classes.privacyButton}
           color="secondary"
@@ -495,7 +500,9 @@ const setActiveStep = (step) =>
           onTouchTap={handleClickOpenFAQ("paper")}
         >
           FAQ
-        </Button>
+        </Button> */}
+
+
         <Dialog
           open={open}
           onClose={handleClose}
@@ -606,7 +613,7 @@ const setActiveStep = (step) =>
                      </Grid>
         </Backdrop>
 
-        <Copyright />
+        {/* <Copyright /> */}
       </main>
     </React.Fragment>
   );

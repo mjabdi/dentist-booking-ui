@@ -28,12 +28,12 @@ const theme = createMuiTheme(
   {
     palette: {
       primary: {
-        main: "#f280c4",
-        dark: "#ff9cd7",
-        light: "#fff5fc",
+        main: "#00909d",
+        dark: "#0c4e59",
+        light: "#d9fffd",
         contrastText: "#fff",
       },
-      secondary: { main: "#fd5d86" ,  contrastText: "#fff",},
+      secondary: { main: "#4a4f52" ,  contrastText: "#fff",},
       common: {
         black,
         darkBlack,

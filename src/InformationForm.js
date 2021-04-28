@@ -114,7 +114,8 @@ export default function InformationForm() {
     const emailChanged = (event) =>
     {
         setEmail(event.target.value);
-        setState(state => ({...state, email : event.target.value }));
+        setRetypeEmail(event.target.value)
+        setState(state => ({...state, email : event.target.value, retypeEmail : event.target.value   }));
         if (event.target.value && EmailValidator.validate(event.target.value))
         {
           setState(state => ({...state, emailError : false}));
@@ -158,36 +159,41 @@ export default function InformationForm() {
 
       <Grid container spacing={4} alignItems="baseline" style={{marginTop:"10px"}}>
 
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12}>
           <TextField 
                     error={state.fullnameError ? true : false}
                     required id="fullname" label="Full Name" 
                     fullWidth autoComplete="name" 
                     value = {fullname}
                     onChange = {fullnameChanged} 
+                    variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12}>
              <TextField 
                         error={state.phoneError ? true : false}
                         required id="phone" label="Phone Number" 
                         fullWidth autoComplete="tel" 
                         value = {phone}
                         onChange = {phoneChanged} 
+                        variant="outlined"
+
              />  
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12}>
              <TextField
                         error={state.emailError ? true : false}
                         required id="email" label="Email Address" 
                         fullWidth autoComplete="email"  type="email"
                         value = {email}
                         onChange = {emailChanged} 
+                        variant="outlined"
+
                        // helperText = 'This email address is where you will receive your results. Please tick the box below to confirm that this is a private email address to which you are happy for us to send your results.'
              />  
         </Grid>
 
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
              <TextField
                         error={state.retypeEmailError ? true : false}
                         required id="retypeEmail" label="Retype Email Address" 
@@ -196,7 +202,7 @@ export default function InformationForm() {
                         onChange = {retypeEmailChanged} 
                         // helperText = 'This email address is where you will receive your results. Please tick the box below to confirm that this is a private email address to which you are happy for us to send your results.'
              />  
-        </Grid>
+        </Grid> */}
 
         {/* <Grid item xs={12} className={classes.formControl} >
           <FormControlLabel className={classes.formControl}  style={ {color: state.emailConfirmedError ? "red" : ''}} 

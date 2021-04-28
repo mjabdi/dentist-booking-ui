@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
       border: "1px solid #999",
       color: "#555",
       fontWeight: "500",
-      fontSize: "0.95rem",
+      fontSize: "1.1rem",
       borderRadius: "4px",
       width: "100%",
-      padding: "10px",
+      padding: "20px",
       cursor: "pointer",
       transition: "all 0.1s ease-in-out",
       "&:hover": {
@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor:  theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.light}`,
       fontWeight: "500",
-      fontSize: "0.95rem",
+      fontSize: "1.1rem",
       borderRadius: "4px",
       width: "100%",
-      padding: "10px",
+      padding: "20px",
       color: "#fff",
       cursor: "pointer",
     },
@@ -56,16 +56,9 @@ const useStyles = makeStyles((theme) => ({
   }));
 
   const Packages = [
-    {packageName: 'Private Consultation'},
-    {packageName: `Coil fitting/Coil removal`},
-    {packageName: `Well Woman Check`},
-    {packageName: `Sexual health screening`},
-    {packageName: `Pre-pregnancy/Fertility check`},
-    {packageName: `Gynaecological ultrasound`},
-    {packageName: `Cervical cancer vaccination`},
-    {packageName: `HPV`},
-    {packageName: `Pap Smear`},
-    {packageName: `Warts treatment`},
+    {packageName: 'Enlighten home teeth whitening - £395'},
+    {packageName: `Enlighten home and in office teeth whitening - £495`},
+    {packageName: `Invisalign consultation`},
   ]
 
 export default function PackageForm() {
@@ -108,7 +101,7 @@ export default function PackageForm() {
 
       <Grid container spacing={1} alignItems="baseline" style={{marginTop:"10px"}}>
         {Packages.map((item) => (
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <div
               className={
                 item.packageName === state.package

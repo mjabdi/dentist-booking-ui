@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import {
-    DatePicker,
-    MuiPickersUtilsProvider,
-  } from '@material-ui/pickers';
+  DatePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
 
 import DateFnsUtils from '@date-io/date-fns';
 
 import GlobalState from './GlobalState';
-import {BrowserView, MobileView} from 'react-device-detect';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 import TimeService from './services/TimeService';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
+import PhoneIcon from '@material-ui/icons/Phone';
+
 
 
 import { format, addMinutes, isWeekend, getDay } from 'date-fns';
@@ -26,7 +28,7 @@ import { enGB, } from 'date-fns/locale'
 import dateformat from 'dateformat';
 
 class UTCUtils extends DateFnsUtils {
- 
+
   locale = enGB;
   // format(date, formatString) {
   //   return format(new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000 ), formatString,enGB);
@@ -49,11 +51,11 @@ class UTCUtils extends DateFnsUtils {
 const useStyles = makeStyles((theme) => ({
 
   loadingBox: {
-    
+
   },
 
-  pageTitle:{
-    color : theme.palette.primary.main,
+  pageTitle: {
+    color: theme.palette.primary.main,
     marginBottom: "15px"
   }
 
@@ -63,76 +65,72 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function DateForm() {
-   const classes = useStyles();
+  const classes = useStyles();
 
-    const [state, setState] = React.useContext(GlobalState);
-  
-    const [firstAvailableDay, setFirstAvailableDay] = React.useState(null);
-    const [fullyBookedDays, setFullyBookedDays] = React.useState(null);
+  const [state, setState] = React.useContext(GlobalState);
 
-    const [bookingDate, setBookingDate] = React.useState(state.bookingDate);
+  const [firstAvailableDay, setFirstAvailableDay] = React.useState(null);
+  const [fullyBookedDays, setFullyBookedDays] = React.useState(null);
+
+  const [bookingDate, setBookingDate] = React.useState(state.bookingDate);
 
 
-    const [dataLoaded, setDataLoaded] =  React.useState(false);
+  const [dataLoaded, setDataLoaded] = React.useState(false);
 
-    useEffect(() => {
-      window.scrollTo(0, 0)
-    }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
-    const LoadData = () => {
+  const LoadData = () => {
 
-      const promise1 = TimeService.getFirstAvailableDate();
-      const promise2 = TimeService.getFullyBookedDates();
+    const promise1 = TimeService.getFirstAvailableDate();
+    const promise2 = TimeService.getFullyBookedDates();
 
-      Promise.all([promise1, promise2]).then( (values) => {
-        let firstday = new Date((values[0].data).date);
-        firstday.setHours(0,0,0,0);
+    Promise.all([promise1, promise2]).then((values) => {
+      let firstday = new Date((values[0].data).date);
+      firstday.setHours(0, 0, 0, 0);
 
-        firstday = new Date(firstday.getTime() - firstday.getTimezoneOffset() * 60 * 1000);
+      firstday = new Date(firstday.getTime() - firstday.getTimezoneOffset() * 60 * 1000);
 
-        setFirstAvailableDay(firstday);
-        if (!state.bookingDate)
-        {
-          dateChanged(firstday);
-        }
-       
-        setFullyBookedDays(values[1].data);
+      setFirstAvailableDay(firstday);
+      if (!state.bookingDate) {
+        dateChanged(firstday);
+      }
 
-        setDataLoaded(true);
+      setFullyBookedDays(values[1].data);
 
-      }).catch( (err) =>
-      {
-        console.log(err);
-      });
-}
+      setDataLoaded(true);
+
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
 
 
 
-    useEffect(() => {
-      LoadData();
+  useEffect(() => {
+    LoadData();
 
-    },[]);
+  }, []);
 
-  
 
-    const dateChanged = (date) =>
-    {
-        date = new Date(date.getFullYear(), date.getMonth(), date.getDate(),0,0,0,0);
-        // const offset = parseInt(date.getTimezoneOffset());
-        // console.log(offset);
 
-        date = new Date(date.getTime() - (date.getTimezoneOffset() * 60 * 1000));
-        // date = new Date(date.getFullYear(), date.getMonth(), date.getDate(),0,0,0,0);
-        
-        // date = format(date, 'yyyy-MM-dd HH:mm:ss zzz', { timeZone: 'Europe/London' }) ; // 2014-10-25 10:46:20 GMT 00
-        // date = toDate(date);
-        console.log(date);
-        setBookingDate(date);
-        setState(state => ({...state, bookingDate: date}));
-    }
+  const dateChanged = (date) => {
+    date = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0);
+    // const offset = parseInt(date.getTimezoneOffset());
+    // console.log(offset);
 
-  const checkFullyBooked = (date) =>
-  {
+    date = new Date(date.getTime() - (date.getTimezoneOffset() * 60 * 1000));
+    // date = new Date(date.getFullYear(), date.getMonth(), date.getDate(),0,0,0,0);
+
+    // date = format(date, 'yyyy-MM-dd HH:mm:ss zzz', { timeZone: 'Europe/London' }) ; // 2014-10-25 10:46:20 GMT 00
+    // date = toDate(date);
+    console.log(date);
+    setBookingDate(date);
+    setState(state => ({ ...state, bookingDate: date }));
+  }
+
+  const checkFullyBooked = (date) => {
     var result = false;
 
     // if (isWeekend(date))
@@ -140,101 +138,96 @@ export default function DateForm() {
 
     // console.log(getDay(date))
 
-    if (getDay(date) === 1 || getDay(date) === 2 || getDay(date) === 3 ||  getDay(date) === 6 ||  getDay(date) === 0)
-      return true  
+    if (getDay(date) === 1 || getDay(date) === 2 || getDay(date) === 3 || getDay(date) === 6 || getDay(date) === 0)
+      return true
 
-    if (dateformat(date,'yyyy-mm-dd') < dateformat(firstAvailableDay,'yyyy-mm-dd'))
-    {
-       return true;
+    if (dateformat(date, 'yyyy-mm-dd') < dateformat(firstAvailableDay, 'yyyy-mm-dd')) {
+      return true;
     }
 
-    else if (fullyBookedDays && fullyBookedDays.length > 0)
-    {
-      for (var i=0 ; i < fullyBookedDays.length ; i++ )
-      {
-        if (dateformat(new Date(fullyBookedDays[i]), 'yyyy-mm-dd') === dateformat(date,'yyyy-mm-dd'))
-        {
+    else if (fullyBookedDays && fullyBookedDays.length > 0) {
+      for (var i = 0; i < fullyBookedDays.length; i++) {
+        if (dateformat(new Date(fullyBookedDays[i]), 'yyyy-mm-dd') === dateformat(date, 'yyyy-mm-dd')) {
           result = true;
         }
       }
 
       return result;
     }
-    else
-    {
+    else {
       return false;
     }
-}
+  }
 
   return (
 
     <React.Fragment>
-               
-                <Typography variant="h6" gutterBottom className={classes.pageTitle}>
-                    Pick a Date
+
+      <Typography variant="h6" gutterBottom className={classes.pageTitle}>
+        Pick a Date
                 </Typography>
 
-        {(dataLoaded && firstAvailableDay) ?  (
-            
-                <React.Fragment>
+      {(dataLoaded && firstAvailableDay) ? (
 
-                <Grid
-                  container
-                  direction="column"
-                  justify="center"
-                  alignItems="center"
-                  >
+        <React.Fragment>
 
-                        <BrowserView>
-                            <MuiPickersUtilsProvider utils={UTCUtils} locale={enGB}>
-                                    <DatePicker autoOk 
-                                                disablePast={true} 
-                                                openTo="date"
-                                                orientation="landscape" 
-                                                variant="static" 
-                                                fullWidth
-                                                value={bookingDate} 
-                                                onChange={dateChanged} 
-                                                shouldDisableDate={checkFullyBooked}
-                                                />
-                            </MuiPickersUtilsProvider>
-                        </BrowserView>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
 
-                        <MobileView>
-                            <MuiPickersUtilsProvider utils={UTCUtils} locale={enGB}>
-                                        <DatePicker autoOk 
-                                                    disablePast={true} 
-                                                    openTo="date"
-                                                    variant="static" 
-                                                    fullWidth
-                                                    value={bookingDate} 
-                                                    onChange={dateChanged} 
-                                                    shouldDisableDate={checkFullyBooked}
-                                                    />
-                                </MuiPickersUtilsProvider>
-                        </MobileView>
-                </Grid>
+            <BrowserView>
+              <MuiPickersUtilsProvider utils={UTCUtils} locale={enGB}>
+                <DatePicker autoOk
+                  disablePast={true}
+                  openTo="date"
+                  orientation="landscape"
+                  variant="static"
+                  fullWidth
+                  value={bookingDate}
+                  onChange={dateChanged}
+                  shouldDisableDate={checkFullyBooked}
+                />
+              </MuiPickersUtilsProvider>
+            </BrowserView>
 
-              </React.Fragment>
-              )
-            : 
-            (
-            <React.Fragment>
-                <Grid
-                  container
-                  direction="column"
-                  justify="center"
-                  alignItems="center"
-                  >
+            <MobileView>
+              <MuiPickersUtilsProvider utils={UTCUtils} locale={enGB}>
+                <DatePicker autoOk
+                  disablePast={true}
+                  openTo="date"
+                  variant="static"
+                  fullWidth
+                  value={bookingDate}
+                  onChange={dateChanged}
+                  shouldDisableDate={checkFullyBooked}
+                />
+              </MuiPickersUtilsProvider>
+            </MobileView>
+          </Grid>
 
-                      <Skeleton variant="text" width={'80%'} />
-                      <Skeleton variant="text" width={'80%'}  />
-                      <Skeleton variant="rect" width={'80%'}  height={220} />
+        </React.Fragment>
+      )
+        :
+        (
+          <React.Fragment>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
 
-                  </Grid>
-            </React.Fragment>
-            )
-          }
+              <Skeleton variant="text" width={'80%'} />
+              <Skeleton variant="text" width={'80%'} />
+              <Skeleton variant="rect" width={'80%'} height={220} />
+
+            </Grid>
+          </React.Fragment>
+        )
+      }
     </React.Fragment>
   );
 }
@@ -243,11 +236,10 @@ export default function DateForm() {
 
 
 
-function EquallDates(date1, date2)
-{
-   return (
-           date1.getFullYear() === date2.getFullYear() &&
-           date1.getMonth() === date2.getMonth() &&
-           date1.getDate() === date2.getDate()
-   );      
+function EquallDates(date1, date2) {
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
 }

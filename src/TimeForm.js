@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     "&:hover": {
       background: theme.palette.primary.light,
-      // color: "#f"
+      // color: "#fff"
     },
   },
 
@@ -209,20 +209,19 @@ export default function TimeForm() {
 
 
 
-          {checkFullyBooked(timeSlots) && (
+          {/* {checkFullyBooked(timeSlots) && ( */}
 
             <React.Fragment>
-              <div style={{ fontSize: "1.2rem", paddingTop: "10px", paddingBottom: "10px", color: "#e61290", fontWeight: "500", background: "#fff5f5" }}>
-                If your desired time is not available please call our receptionist to find out if there is a last minute cancelation to fit you in.
-
-                    <div style={{ marginTop: "20px", fontSize: "1.5rem", fontWeight: "500" }}>
-                  <Grid container spacing={2} direction="row" justify="center" alignItems="center">
+              <div style={{border:"1px solid #00909d", marginBottom:"10px"  , borderRadius:"8px",  fontSize: "1.1rem", padding:"10px 5px", color: "#0c4e59", fontWeight: "500", background: "#d9fffd" }}>
+              For early or late night appointment, for weekend or if your desired time is already booked please call "020 71830357" and one of our team would be happy to accommodate if possible
+                    <div style={{ marginTop: "10px", fontSize: "1.4rem", fontWeight: "500" }}>
+                  <Grid container spacing={1} direction="row" justify="center" alignItems="center">
                     <Grid item>
-                      <div>  <a href="tel:02071831049"><PhoneIcon style={{ color: "#e61290", fontSize: "2rem" }} /> </a></div>
+                      <div>  <a href="tel:02071831049"><PhoneIcon style={{ color: "#00909d", fontSize: "1.8rem" }} /> </a></div>
                     </Grid>
                     <Grid item>
                       <div style={{ marginTop: "-10px" }}>
-                        <a href="tel:02071831049" style={{ color: "#e61290" }}> Call:  020 71831049 </a>
+                        <a href="tel:02071830357" style={{ color: "#00909d" }}> Call:  020 71830357 </a>
                       </div>
                     </Grid>
                   </Grid>
@@ -232,7 +231,7 @@ export default function TimeForm() {
 
             </React.Fragment>
 
-          )}
+          {/* )} */}
 
           {timeSlots.length === 0 && (
 

@@ -283,7 +283,7 @@ export default function ReviewForm() {
                         />
                         Deposit:
                       </span>
-                      <span className={classes.infoDataPrice}> £100.00 </span>
+                      <span className={classes.infoDataPrice}> £95.00 </span>
                     </li>
                   </ul>
                 </div>

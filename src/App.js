@@ -64,9 +64,12 @@ function App() {
         <CssBaseline />
         <GlobalStyles />
         <div className="App">
-          {!state.getStarted && <WelcomeForm />}
+          {/* {!state.getStarted && <WelcomeForm />}
           {state.getStarted && !state.agreed && <AgreementForm />}
-          {state.getStarted && state.agreed && <Checkout />}
+          {state.getStarted && state.agreed && <Checkout />} */}
+
+          <Checkout />
+          
         </div>
       </MuiThemeProvider>
     </GlobalState.Provider>
