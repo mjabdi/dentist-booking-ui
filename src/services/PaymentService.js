@@ -4,7 +4,7 @@ export default class PaymentService {
 
     static doPayment = (payload) =>
     {
-       return API.post('/api/gynae/payment/dopayment', payload);
+       return API.post('/api/dentist/payment/dopayment', payload);
     }
 
 

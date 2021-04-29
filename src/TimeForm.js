@@ -247,7 +247,7 @@ export default function TimeForm() {
 
           <BrowserView>
             <div className={classes.root}>
-              <GridList cellHeight={60} className={classes.gridList}>
+              <GridList cellHeight={60} className={classes.gridList} cols={4}>
                 {timeSlots.map((timeSlot) => (
                   <GridListTile key={timeSlot.time} cols={1}>
                     <div
