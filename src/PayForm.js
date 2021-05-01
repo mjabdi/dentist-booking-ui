@@ -11,6 +11,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import dateformat from "dateformat";
 import { Backdrop } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
+import Stripe from "./StripeContainer";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -59,8 +60,10 @@ export default function PayForm() {
   const [state, setState] = React.useContext(GlobalState);
 
   const [loaded, setLoaded] = React.useState(false);
-  const [personInfo, setPersonInfo] = React.useState(null);
   const [submiting, setSubmitting] = React.useState(false);
+
+  const [personInfo, setPersonInfo] = React.useState(null);
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -148,12 +151,14 @@ export default function PayForm() {
 
           <div className={classes.boxTime}>
           <div className={classes.boxTitle}>Card Info</div>
-            <PaymentForm
+            {/* <PaymentForm
               personInfo={personInfo}
               onStart={onStart}
               onComplete={onComplete}
               onError={onError}
-            />
+            /> */}
+
+            <Stripe/>
           </div>
 
         

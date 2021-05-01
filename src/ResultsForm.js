@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import GlobalState from './GlobalState';
-import doneImage from './images/ok.png';
+import doneImage from './images/ok2.png';
 import errorImage from './images/error.png';
 import * as dateformat from 'dateformat';
 import Alert from '@material-ui/lab/Alert';
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       },
 
       doneImage: {
-        width: "205px",
+        width: "330px",
         height: "207px",
         margin: "20px"
       },
@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
         margin: "20px"
       },
       thankText:{
-        color: theme.palette.primary.main
+        color: theme.palette.primary.main,
+        fontWeight:"500"
       },
 
       error:{
