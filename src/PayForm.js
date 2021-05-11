@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   pageTitle: {
     color: theme.palette.primary.main,
     marginBottom: "15px",
+    minWidth: "320px"
   },
 
   backdrop: {
@@ -48,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid #ddd`,
     borderRadius: "5px",
     color: "#333",
-    padding: "30px 30px 0px 20px",
+    padding: "30px 5px",
     textAlign: "left",
     marginTop: "20px",
     position: "relative",
@@ -143,7 +144,7 @@ export default function PayForm() {
           <div>
 
             <Alert severity="info" style={{marginBottom:"15px", fontSize:"0.95rem" ,lineHeight:"1.5rem", textAlign:"justify"}}>
-            This is the deposit to secure your appointment, you can cancel anytime up-to 24 hours of your appointment.
+            This is the deposit to secure your appointment, you can cancel anytime up-to 48 working hours of your appointment.
 
             </Alert>
 

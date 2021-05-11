@@ -88,6 +88,9 @@ export default function ResultsForm() {
               <span className={classes.bold}>{`"${state.bookingRef}"`}</span> . We have
               emailed your booking information, and will look forward to meet
               you at the clinic.
+              <p>
+                * If not received email confirmation in 10 min please check your spam folder
+              </p>
             </Typography>
 
             </Fade>

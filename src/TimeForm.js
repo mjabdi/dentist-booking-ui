@@ -233,6 +233,31 @@ export default function TimeForm() {
 
           {/* )} */}
 
+
+          {checkFullyBooked(timeSlots) && (
+
+            <React.Fragment>
+              <div style={{border:"1px solid #e80000", marginBottom:"10px"  , borderRadius:"8px",  fontSize: "1.1rem", padding:"10px 5px", color: "#fff", fontWeight: "500", background: "#a80a0a" }}>
+              <p>
+                Sorry this date is already fully booked! Please choose another date.
+              </p>
+              {dateformat(state.bookingDate,'yyyy-mm-dd') <= '2021-06-14' && (
+                <p>
+                  * All dates before 15th of June are fully booked.
+                </p>
+
+              )}
+
+                
+              </div>
+
+
+            </React.Fragment>
+
+          )} 
+
+
+
           {timeSlots.length === 0 && (
 
             <React.Fragment>

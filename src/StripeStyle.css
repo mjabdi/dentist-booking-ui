@@ -45,7 +45,7 @@
   .Form {
     animation: fade 200ms ease-out;
 
-    padding: 20px;
+    /* padding: 20px; */
 
     /* background-color: #d9fffd; */
     font-size: 16px;
@@ -58,8 +58,8 @@
   }
   
   .FormGroup {
-    margin: 0px 20px;
-    padding: 5px;
+    margin: 20px 5px;
+    padding: 10px 0px;
     border: 1px solid #00c2ed;
     /* border-style: none;
      */
@@ -125,7 +125,7 @@
   
   .StripeElement {
     width: 100%;
-    padding: 11px 15px 11px 0;
+    padding: 11px 10px 11px 0;
   }
   
   .SubmitButton {
