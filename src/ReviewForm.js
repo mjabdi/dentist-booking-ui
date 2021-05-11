@@ -259,7 +259,7 @@ export default function ReviewForm() {
                         />
                         Check-up Duration:
                       </span>
-                      Up-to 45 minutes
+                      Up-to 30 minutes
                     </li>
 
                     <li className={classes.li}>
@@ -328,7 +328,7 @@ export default function ReviewForm() {
             <a
               className={classes.link}
               target="_blank"
-              href="https://www.medicalexpressclinic.co.uk/terms-and-conditions"
+              href="https://www.wimpoledentaloffice.com/terms-and-condition.php"
             >
               terms and condition.
             </a>

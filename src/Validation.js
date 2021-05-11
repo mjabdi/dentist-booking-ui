@@ -52,12 +52,13 @@ export default async function ValidateStep(state, setState, step) {
       state.package = "Consultation"
     }
 
-    // if (state.package && state.package.toLowerCase() === "others") {
-    //   if (!state.notes || state.notes.length < 1) {
-    //     error = true;
-    //     setState((state) => ({ ...state, notesError: true }));
-    //   }
-    // }
+
+    if (state.package && state.package === "Other Treatments") {
+      if (!state.notes || state.notes.length < 1) {
+        error = true;
+        setState((state) => ({ ...state, notesError: true }));
+      }
+    }
 
     if (!error) {
       if (!state.bookingRef) {

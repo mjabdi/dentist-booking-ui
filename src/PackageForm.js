@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
     {packageName: 'Enlighten home teeth whitening - £395'},
     {packageName: `Enlighten home and in office teeth whitening - £495`},
     {packageName: `Invisalign consultation`},
+    {packageName: `Other Treatments`},
   ]
 
 export default function PackageForm() {
@@ -119,9 +120,9 @@ export default function PackageForm() {
           <TextField
             style={{marginTop:"10px"}}
             id="notes"
-            // error={state.notesError && state.package === "Others"}
+            error={state.notesError}
             fullWidth
-            // required={state.package === "Others"}
+            required={state.package === "Other Treatments"}
             label="Others"
             value={notes}
             onChange={notesChanged}
