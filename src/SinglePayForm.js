@@ -12,6 +12,8 @@ import dateformat from "dateformat";
 import { Backdrop } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import Stripe from "./StripeContainer";
+import Paper from '@material-ui/core/Paper';
+
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -54,9 +56,43 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     position: "relative",
   },
+
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 700,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(0),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(1),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(0),
+      marginBottom: theme.spacing(2),
+      padding: theme.spacing(3),
+    },
+  },
+
+  infoBox: {
+    width: "100%",
+    textAlign: "left",
+    fontSize: "0.9rem",
+    fontWeight: "500",
+    padding:"5px 20px",
+    borderRadius:"8px",
+    border: "1px solid #eee",
+    backgroundColor: "#008571",
+    color:"#fff"
+  },
+
 }));
 
-export default function PayForm() {
+export default function SinglePayForm() {
   const classes = useStyles();
   const [state, setState] = React.useContext(GlobalState);
 
@@ -77,49 +113,24 @@ export default function PayForm() {
       referrer = "/";
     }
 
-    const _personInfo = {
-      fullname: state.fullname,
-      email: state.email,
-      phone: state.phone,
-      notes: state.notes,
-      service: state.package,
-      bookingDate: dateformat(
-        new Date(state.bookingDate.toUTCString().slice(0, -4)),
-        "yyyy-mm-dd"
-      ),
-      bookingTime: state.bookingTime,
-      bookingRef: state.bookingRef,
-      referrer: referrer,
-    };
-
-    setPersonInfo(_personInfo);
+    setPersonInfo({...state.booking});
     setLoaded(true)
   };
 
-  const onComplete = (res) => {
-    setState((state) => ({ ...state, finalResults: [res] }));
-    setState((state) => ({ ...state, activeStep: state.activeStep + 1 }));
-    setSubmitting(false);
-  };
-
-  const onError = (err) => {
-    console.log(err);
-    setSubmitting(false);
-  };
-
-  const onStart = () => {
-    setSubmitting(true);
-  };
 
   return (
     <React.Fragment>
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+
+
       <Typography
         className={classes.pageTitle}
         variant="h6"
         gutterBottom
         style={{ marginBottom: "30px" }}
       >
-        Pay Deposit
+        Pay Deposit - £95.00
       </Typography>
 
       {(!loaded || !personInfo) && (
@@ -135,9 +146,15 @@ export default function PayForm() {
           <div>
 
             <Alert severity="info" style={{marginBottom:"15px", fontSize:"0.95rem" ,lineHeight:"1.5rem", textAlign:"justify"}}>
-            This is the deposit to secure your appointment, you can cancel anytime up-to 48 working hours of your appointment.
+              This is the deposit to secure your appointment, you can cancel anytime up-to 48 working hours of your appointment.
 
             </Alert>
+
+          </div>
+          
+          <div className={classes.infoBox}>
+            <p> Hello <strong>{`${state.booking.fullname.toUpperCase()},`} </strong></p>
+            <p> Please pay the £95 deposit to secure your appointment with the Dental Clinic.</p>
 
           </div>
 
@@ -170,6 +187,9 @@ export default function PayForm() {
           </Grid>
         </Grid>
       </Backdrop>
+
+      </Paper>
+      </main>
     </React.Fragment>
   );
 }

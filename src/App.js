@@ -8,11 +8,16 @@ import BookService from "./services/BookService";
 import theme from "./theme";
 import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 import GlobalStyles from "./GlobalStyles";
+import PaymentAlreadyDone from "./PaymentAlreadyDone";
+import SinglePayForm from "./SinglePayForm";
+import PaymentSuccessForm from "./PaymentSuccessForm";
 
 const getPathId = () => {
   let urlElements = window.location.pathname.split("/");
-  if (urlElements.length === 2) {
-    if (urlElements[1].startsWith("id")) return urlElements[1].substr(2);
+  if (urlElements.length === 4) {
+    if (urlElements[2].startsWith("pay")){
+      return urlElements[3]
+    } 
   }
   return null;
 };
@@ -26,33 +31,16 @@ function App() {
 
   useEffect(() => {
     const bookingId = getPathId();
-
     if (bookingId) {
       BookService.getBookingById(bookingId)
         .then((res) => {
-          if (res.data) {
+          if (res) {
             const booking = res.data;
-            setState((state) => ({ ...state, firstname: booking.forename }));
-            setState((state) => ({ ...state, lastname: booking.surname }));
-            setState((state) => ({ ...state, email: booking.email }));
-            setState((state) => ({ ...state, retypeEmail: booking.email }));
-            setState((state) => ({ ...state, gender: booking.gender }));
-            setState((state) => ({ ...state, title: booking.title }));
-            setState((state) => ({ ...state, birthDate: booking.birthDate }));
-            setState((state) => ({
-              ...state,
-              passportNumber: booking.passportNumber || "",
-            }));
-            setState((state) => ({
-              ...state,
-              passportNumber2: booking.passportNumber2 || "",
-            }));
-            setState((state) => ({ ...state, phone: booking.phone }));
-            setState((state) => ({ ...state, postCode: booking.postCode }));
-            setState((state) => ({ ...state, address: booking.address }));
+            setState((state) => ({...state, booking: booking, loaded: true }));
           }
         })
         .catch((err) => {
+          setState((state) => ({...state, booking: null, loaded: true }));
           console.error(err);
         });
     }
@@ -64,11 +52,32 @@ function App() {
         <CssBaseline />
         <GlobalStyles />
         <div className="App">
-          {/* {!state.getStarted && <WelcomeForm />}
-          {state.getStarted && !state.agreed && <AgreementForm />}
-          {state.getStarted && state.agreed && <Checkout />} */}
 
-          <Checkout />
+          {!getPathId() && (
+            <Checkout />
+          )}
+
+          {getPathId() && !state.loaded && (
+            <div> loading... </div>
+          )}
+
+          {getPathId() && state.loaded && state.booking && !state.booking.paymentInfo && !state.paymentSuccess && (
+            <SinglePayForm/>
+          )}
+
+          {getPathId() && state.loaded && state.booking && !state.booking.paymentInfo && state.paymentSuccess && (
+            <PaymentSuccessForm/>
+          )}
+
+
+          {getPathId() && state.loaded && state.booking && state.booking.paymentInfo && (
+            <PaymentAlreadyDone/>
+          )}
+
+
+          {getPathId() && state.loaded && !state.booking && (
+            <div> Invalid or Expired Link! </div>
+          )}
           
         </div>
       </MuiThemeProvider>

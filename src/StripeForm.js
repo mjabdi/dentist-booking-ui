@@ -114,9 +114,9 @@ export const StripeForm = () => {
     const [processing, setProcessing] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [billingDetails, setBillingDetails] = useState({
-        email: state.email,
-        phone: state.phone,
-        name: state.fullname
+        email: state.email || state.booking.email,
+        phone: state.phone || state.booking.phone,
+        name: state.fullname || state.booking.fullname
     });
 
     const [personInfo, setPersonInfo] = React.useState(null);
@@ -128,12 +128,14 @@ export const StripeForm = () => {
     }, []);
   
     const loadPersonInfo = () => {
-      let referrer = window.location.pathname;
-      if (referrer && referrer.startsWith("/id")) {
-        referrer = "/";
-      }
-  
-      const _personInfo = {
+      
+      let urlArray = window.location.pathname.split("/")
+        
+      let referrer = urlArray[urlArray.length-1];
+
+
+      
+      const _personInfo = state.booking || {
         fullname: state.fullname,
         email: state.email,
         phone: state.phone,
@@ -171,14 +173,12 @@ export const StripeForm = () => {
             setProcessing(true);
         }
 
+
         const payload = await stripe.createPaymentMethod({
             type: "card",
             card: elements.getElement(CardElement),
             billing_details: billingDetails
         });
-
-
-
 
         if (payload.error) {
             setError(payload.error);
@@ -191,7 +191,7 @@ export const StripeForm = () => {
                 setProcessing(false);
 
                 if (res.data.status === "OK") {
-                    setState((state) => ({ ...state, finalResults: [res] , activeStep: state.activeStep + 1 }));
+                    setState((state) => ({ ...state, finalResults: [res] , activeStep: state.activeStep + 1, paymentSuccess: true }));
                 }
 
 
