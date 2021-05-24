@@ -21,8 +21,6 @@ const SANDBOX_APPLICATION_ID = "sandbox-sq0idb-HxCN0_lvfnlC15ZMFkUCdQ";  //SANDB
 const SANDBOX_LOCATION_ID = "LBR8YPCPR878R";                             // SANDBOX
 
 
-
-
 export default class PaymentForm extends React.Component {
   constructor(props) {
     super(props);
