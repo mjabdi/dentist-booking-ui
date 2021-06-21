@@ -53,7 +53,7 @@ function App() {
         <GlobalStyles />
         <div className="App">
 
-          {!getPathId() && (
+          {/* {!getPathId() && (
             <Checkout />
           )}
 
@@ -77,7 +77,7 @@ function App() {
 
           {getPathId() && state.loaded && !state.booking && (
             <div> Invalid or Expired Link! </div>
-          )}
+          )} */}
           
         </div>
       </MuiThemeProvider>
