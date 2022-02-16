@@ -138,7 +138,7 @@ export default function DateForm() {
 
     // console.log(getDay(date))
 
-    if (getDay(date) === 0 || getDay(date) === 1 || getDay(date) === 4 || getDay(date) === 6)
+    if (getDay(date) === 0 || getDay(date) === 6)
       return true
 
     if (dateformat(date, 'yyyy-mm-dd') < dateformat(firstAvailableDay, 'yyyy-mm-dd')) {
