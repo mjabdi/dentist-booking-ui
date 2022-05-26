@@ -130,7 +130,7 @@ export default function SinglePayForm() {
         gutterBottom
         style={{ marginBottom: "30px" }}
       >
-        Pay Deposit - £95.00
+        Pay Deposit - £50.00
       </Typography>
 
       {(!loaded || !personInfo) && (
@@ -154,7 +154,7 @@ export default function SinglePayForm() {
           
           <div className={classes.infoBox}>
             <p> Hello <strong>{`${state.booking.fullname.toUpperCase()},`} </strong></p>
-            <p> Please pay the £95 deposit to secure your appointment with the Dental Clinic.</p>
+            <p> Please pay the £50 deposit to secure your appointment with the Dental Clinic.</p>
 
           </div>
 

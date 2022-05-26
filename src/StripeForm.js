@@ -230,7 +230,7 @@ export const StripeForm = () => {
             </fieldset>
             {error && <ErrorMessage>{error.message}</ErrorMessage>}
             <SubmitButton processing={processing} error={error} disabled={!stripe}>
-                Pay £95.00
+                Pay £50.00
       </SubmitButton>
         </form>
     );
