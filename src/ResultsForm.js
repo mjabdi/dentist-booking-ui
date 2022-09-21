@@ -10,6 +10,7 @@ import * as dateformat from 'dateformat';
 import Alert from '@material-ui/lab/Alert';
 
 import Fade from "react-reveal/Fade";
+import { Helmet } from 'react-helmet';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,6 +71,10 @@ export default function ResultsForm() {
       {state.finalResults.length === 1 &&
         state.finalResults[0].data.status === `OK` && (
           <React.Fragment>
+
+      <Helmet>
+        <script>gtag_report_conversion ();</script>
+      </Helmet>
 
           <Fade down>
 

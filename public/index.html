@@ -28,6 +28,36 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Dr SIA Dentistry Online Booking</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10929243187"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-10929243187');
+    </script>
+    <script>
+      gtag('config', 'AW-10929243187/0XdqCOGT2sUDELOIvNso', {
+        'phone_conversion_number': '020 71830357'
+      });
+    </script>
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-10929243187/kih-CODzp8UDELOIvNso',
+            'event_callback': callback
+        });
+        return false;
+      }
+      </script>
+
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
