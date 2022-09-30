@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     {packageName: `Enlighten home and in office teeth whitening - £495`},
     {packageName: `Invisalign consultation`},
     {packageName: `Emergency Dental Appointment`},    
-    {packageName: `Other Treatments`},
+    {packageName: `Other Treatments`}
   ]
 
 export default function PackageForm() {

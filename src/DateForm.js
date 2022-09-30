@@ -138,8 +138,14 @@ export default function DateForm() {
 
     // console.log(getDay(date))
 
-    if ((getDay(date) === 0 || getDay(date) === 6) && (dateformat(date, 'yyyy-mm-dd') !== "2022-09-25") && (dateformat(date, 'yyyy-mm-dd') !== "2022-10-02"))
+    //
+ 
+    const isExceptionDay = (dateformat(date, 'yyyy-mm-dd') === "2022-09-25" || dateformat(date, 'yyyy-mm-dd') === "2022-10-02")
+
+    if ((getDay(date) === 0 || getDay(date) === 6) && !isExceptionDay)
+    {
       return true
+    }
 
     if (dateformat(date, 'yyyy-mm-dd') < dateformat(firstAvailableDay, 'yyyy-mm-dd')) {
       return true;
