@@ -27,11 +27,12 @@ import PhoneIcon from '@material-ui/icons/Phone';
 const useStyles = makeStyles((theme) => ({
 
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    // display: 'flex',
+    // flexWrap: 'wrap',
+    // justifyContent: 'space-around',
+    // overflow: 'hidden',
+    // width: "100%",
+    // backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     // width: 500,
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
   box: {
     //backgroundColor: "red",
+    minWidth: "100px",
     border: "1px solid #999",
     margin: "5px",
     padding: "5px",

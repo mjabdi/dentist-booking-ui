@@ -100,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
+
   },
   button: {
     marginTop: theme.spacing(3),
@@ -155,6 +156,16 @@ const useStyles = makeStyles((theme) => ({
   mainTitle:{
     color: theme.palette.primary.main,
     fontSize:"1.5rem",
+  },
+
+  ButtonContainer: {
+    position: "fixed",
+    bottom: "0px",
+    background: "rgba(0,0,0,0.1)",
+    width:"100%",
+    paddingRight:"50px",
+    paddingBottom: "50px"
+
   }
 
 }));
@@ -436,6 +447,8 @@ const setActiveStep = (step) =>
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
+
+              {/* <div className={classes.ButtonContainer}> */}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button
@@ -473,9 +486,12 @@ const setActiveStep = (step) =>
                   >
                     {activeStep === steps.length - 2 ? "Proceed to Payment" : "Next"}
                   </Button>
-              )}
-                  
+              )}                  
                 </div>
+
+                {/* </div> */}
+
+
               </React.Fragment>
             )}
           </React.Fragment>

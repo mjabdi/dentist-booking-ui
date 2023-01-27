@@ -36,6 +36,21 @@ const useStyles = makeStyles((theme) => ({
       },
     },
 
+    packageBoxDisabled:{
+      backgroundColor :  "#fff",
+      border: "1px solid #999",
+      opacity: "0.7",
+      color: "#555",
+      fontWeight: "500",
+      fontSize: "1.1rem",
+      borderRadius: "4px",
+      width: "100%",
+      padding: "20px",
+      cursor: "not-allowed",
+      transition: "all 0.1s ease-in-out",
+    },
+
+
     packageBoxSelected:{
       backgroundColor:  theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.light}`,
@@ -56,8 +71,9 @@ const useStyles = makeStyles((theme) => ({
   }));
 
   const Packages = [
-    {packageName: 'Enlighten home teeth whitening - £395'},
-    {packageName: `Enlighten home and in office teeth whitening - £495`},
+    // {packageName: 'Enlighten home teeth whitening - £395', isLimited: true},
+    {packageName: `Enlighten home and in office teeth whitening`, isLimited: true},
+    // {packageName: `In office/laser teeth whitening`, isSpecial: true},
     {packageName: `Invisalign consultation`},
     {packageName: `Emergency Dental Appointment`},    
     {packageName: `Other Treatments`}
@@ -101,25 +117,120 @@ export default function PackageForm() {
         Choose your Service
       </Typography>
 
-      <Grid container spacing={1} alignItems="baseline" style={{marginTop:"10px"}}>
+      <Grid
+        container
+        spacing={1}
+        alignItems="baseline"
+        style={{ marginTop: "10px" }}
+      >
         {Packages.map((item) => (
           <Grid item xs={12}>
             <div
               className={
                 item.packageName === state.package
                   ? classes.packageBoxSelected
+                  : item.isSpecial
+                  ? classes.packageBoxDisabled
                   : classes.packageBox
               }
-              onClick={() => packageClicked(item)}
+              onClick={() => {
+                if (!item.isSpecial) {
+                  packageClicked(item);
+                }
+              }}
             >
               {item.packageName}
+              {item.isLimited && (
+                <div style={{ display: "inline-block", marginLeft: "10px" }}>
+                  <span> - </span>
+                  {/* <span style={{textDecoration: "line-through", paddingRight:"5px"}}>£695</span> */}
+                  <span
+                    style={{
+                      fontWeight: "700",
+                      color: "#ff0000",
+                      fontSize: "1.2em",
+                    }}
+                  >
+                    £395
+                  </span>
+                </div>
+              )}
+              {item.isLimited && (
+                <div
+                  style={{
+                    display: "inline-block",
+                    marginLeft: "10px",
+                    marginTop: "5px",
+                    borderRadius: "10px",
+                    backgroundColor: "#eee",
+                    color: "#000",
+                    fontWeight: "700",
+                    padding: "5px",
+                    fontSize: "0.7em",
+                    border: "1px dotted #ddd",
+                  }}
+                >
+                  Limited Time (First 100 Patients)
+                </div>
+              )}
+              {item.isSpecial && (
+                <div style={{ display: "inline-block", marginLeft: "10px" }}>
+                  <span> - </span>
+                  {/* <span style={{textDecoration: "line-through", paddingRight:"5px"}}>£695</span> */}
+                  <span
+                    style={{
+                      fontWeight: "700",
+                      color: "#ff0000",
+                      fontSize: "1.2em",
+                    }}
+                  >
+                    £195
+                  </span>
+                </div>
+              )}
+              {item.isSpecial && (
+                <div
+                  style={{
+                    display: "inline-block",
+                    marginLeft: "10px",
+                    marginTop: "5px",
+                    borderRadius: "5px 30px 30px 5px",
+                    backgroundColor: "#dbfff8",
+                    color: "#004a3b",
+                    fontWeight: "700",
+                    padding: "5px 8px",
+                    fontSize: "0.85em",
+                    border: "1px dotted #00bf99",
+                  }}
+                >
+                  Special Offer
+                </div>
+              )}
+              {item.isSpecial && (
+                <div
+                  style={{
+                    display: "block",
+                    marginTop: "5px",
+                    borderRadius: "5px",
+                    backgroundColor: "orange",
+                    color: "#000",
+                    fontWeight: "500",
+                    padding: "5px 8px",
+                    fontSize: "0.85em",
+                    border: "1px dotted #eee",
+                  }}
+                >
+                  To book an appointment for this offer please call us at <strong style={{textDecoration:"underline"}}>02071830357</strong>
+                </div>
+              )}
+              
             </div>
           </Grid>
         ))}
 
         <Grid item xs={12}>
           <TextField
-            style={{marginTop:"10px"}}
+            style={{ marginTop: "10px" }}
             id="notes"
             error={state.notesError}
             fullWidth

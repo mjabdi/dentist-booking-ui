@@ -140,7 +140,20 @@ export default function DateForm() {
 
     //
  
-    const isExceptionDay = (dateformat(date, 'yyyy-mm-dd') === "2022-09-25" || dateformat(date, 'yyyy-mm-dd') === "2022-10-02")
+    const isExceptionDay = (dateformat(date, 'yyyy-mm-dd') === "2022-09-25" || dateformat(date, 'yyyy-mm-dd') === "2022-10-02" || dateformat(date, 'yyyy-mm-dd') === "2022-10-09" 
+                            || dateformat(date, 'yyyy-mm-dd') === "2022-10-15"
+                            || dateformat(date, 'yyyy-mm-dd') === "2022-10-16"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2022-10-22"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2022-10-23"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2022-10-29"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2022-11-05"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2022-11-12"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2022-11-13"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2023-01-21"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2023-01-22"                       
+
+
+    )
 
     if ((getDay(date) === 0 || getDay(date) === 6) && !isExceptionDay)
     {
