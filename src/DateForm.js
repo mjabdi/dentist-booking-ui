@@ -157,6 +157,8 @@ export default function DateForm() {
                             || dateformat(date, 'yyyy-mm-dd') === "2023-04-23"                       
                             || dateformat(date, 'yyyy-mm-dd') === "2023-06-24"                       
                             || dateformat(date, 'yyyy-mm-dd') === "2023-06-25"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2023-08-19"                       
+                            || dateformat(date, 'yyyy-mm-dd') === "2023-08-20"                       
                     
 
 
